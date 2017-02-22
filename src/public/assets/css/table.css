@@ -1,0 +1,67 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+  th {
+    position: relative;
+    line-height: 24px;
+    font-size: 12px;
+    text-transform: capitalize;
+    font-weight: 500;
+    > a.filter-menu-link {
+      position: absolute;
+      right: 0;
+    }
+    > span.sort-arrow {
+      font-size: 18px;
+    }
+    &:hover {
+      > a.filter-menu-link {
+        display: inline;
+      }
+    }
+    .column-title { cursor: move; }
+    &.filtered { border-bottom: 2px solid #e0e0e0 }
+    > span.isDragging { opacity: 0.5; }
+    &.isOver { border-right: 1px solid #000; }
+  }
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  th, td {
+    text-align: left;
+    white-space: nowrap;
+    padding: 0 24px 0 56px;
+    &:first-child { padding-left: 24px };
+    /* border: 1px solid gray; */
+    &.number {
+      text-align: right;
+    }
+  }
+  tr:not(.incident-card-row) {
+    height: 48px;
+    border-bottom: 1px solid #e0e0e0;
+    &:not(:first-child), &:not(:last-child) {
+      &:hover {
+        background-color: #EEE;
+      }
+    }
+  }
+  tr.incident-card-row {
+    border-bottom: 1px solid #e0e0e0;
+    td {
+      div.incident-card {
+        /*max-height: 0;
+        transition: max-height 0.95s ease-out;
+        overflow: hidden;*/
+      }
+    }
+    td.loaded {
+      div.incident-card {
+        /*max-height: 300px;*/
+      }
+    }
+  }
+
+}

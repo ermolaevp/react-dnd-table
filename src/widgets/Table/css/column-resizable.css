@@ -1,0 +1,31 @@
+table th:last-child {
+  .column-resizer {
+    display: none;
+  }
+}
+
+tr.column-row-drop-target.isOver {
+  border: 1px dashed #78909c;
+}
+span.isDragging {
+  opacity: 0.5;
+}
+.column-drop-target.isOver {
+
+}
+
+th {
+  position: relative;
+}
+
+.column-resizer {
+  &:hover, &.isDragging { border-right: 3px solid #78909c }
+  min-height: 24px;
+  width: 3px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-right: 3px;
+  cursor: col-resize;
+}

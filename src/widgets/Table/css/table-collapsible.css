@@ -1,0 +1,96 @@
+.table-collapsible {
+  background-color: #fff;
+  margin-bottom: 16px;
+  padding: 0 24px;
+  .table-bar {
+    width: 100%;
+    cursor: pointer;
+    height: 44px;
+    padding-top: 20px;
+    position: relative;
+    border-bottom: 1px solid #cecece;
+    margin-bottom: 16px;
+    .table-title {
+      display: inline-block;
+      margin-left: 24px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+      vertical-align: top;
+    }
+    .table-culumn-filter {
+      /*left: 20px;*/
+      /*position: absolute;*/
+      /*top: 128px;*/
+    }
+    .table-menu-filter {
+      display: inline-block;
+      position: relative;
+    }
+
+    .table-bar-overflow-gradient {
+      text-align: right;
+      position: absolute;
+      width: 40px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 40%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 40%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 40%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+    }
+    .table-collapse {
+      display: inline-block;
+      transform: rotate(90deg);
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+  .table-main {
+    overflow-y: hidden;
+    max-height: 9999px;
+  }
+  .table-bottom {
+    margin-bottom: 24px;
+    padding-top: 20px;
+  }
+}
+
+.table-collapsible.collapsed {
+  .table-bar {
+    height: 36px;
+    padding-top: 12px;
+    margin-bottom: 0;
+    border-bottom: none;
+    .table-menu {
+      padding-top: 12px;
+    }
+    .table-fast-filters {
+      top: 13px;
+      padding-left: 0;
+    }
+    .table-title {
+      margin-left: 0;
+    }
+  }
+  .table-columns-menu {
+    display: none;
+  }
+  .table-main {
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    height: 0;
+  }
+  .table-bottom {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .table-collapse {
+    transform: rotate(-90deg) !important;
+    margin-top: 12px;
+  }
+}

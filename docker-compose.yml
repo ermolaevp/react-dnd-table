@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  ids_frontend:
+    build:
+      context: .
+    volumes:
+      - node_modules:/var/www/node_modules
+      - ./src:/var/www/src
+    ports:
+      - "9000:9000"
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_LOGLEVEL=warn
+      - NPM_CONFIG_SAVE=true
+      - NPM_CONFIG_SAVE_EXACT=true
+      - PORT=9000
+
+volumes:
+
+  node_modules:
+    driver: local

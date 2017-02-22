@@ -1,0 +1,24 @@
+.DatePickerContainer {
+  width: 600px;
+  margin: 0 auto;
+  .DatePickerContainer-periods {
+    width: 100%;
+    text-align: center;
+    > span:not(:first-child) {
+      margin-left: 8px;
+    }
+    > span {
+      cursor: pointer;
+      display: inline-block;
+      width: 120px;
+      font-size: 17px;
+      padding: 4px 8px;
+      line-height: 24px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      &:hover, &.dpc-period--active {
+        border-bottom: 2px solid #c6ff00;
+      }
+    }
+  }
+}
