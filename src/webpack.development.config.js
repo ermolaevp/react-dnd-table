@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var constants = require('./constants.js');
 
 module.exports = {
   context: __dirname,
@@ -17,7 +16,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         loader: "style-loader!css-loader!postcss-loader"
@@ -25,50 +24,41 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference
+        loader: 'babel-loader',
         query: {
           "presets": ["react", "es2015", "stage-0", "react-hmre"]
         }
       },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
-      {
-        test: /\.ejs$/,
-        loader: 'ejs',
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif)$/,
-        loader: 'url-loader',
-        query: {
-          name: '[path][name].[ext]?[hash]',
-          limit: 10000,
-        },
-      },
-      {
-        test: /\.(woff2?)(\?v=[0-9].[0-9].[0-9])?$/,
-        loader: 'url-loader?mime-type=application/font-woff',
-        query: {
-          name: '[path][name].[ext]?[hash]',
-        },
-      },
-      {
-        test: /\.(eot|ttf|svg|wav|mp3)(\?v=[0-9].[0-9].[0-9])?$/,
-        loader: 'file-loader',
-        query: {
-          name: '[path][name].[ext]?[hash]',
-        },
-      },
+      // {
+      //   test: /\.(png|jpg|jpeg|gif)$/,
+      //   loader: 'url-loader',
+      //   query: {
+      //     name: '[path][name].[ext]?[hash]',
+      //     limit: 10000,
+      //   },
+      // },
+      // {
+      //   test: /\.(woff2?)(\?v=[0-9].[0-9].[0-9])?$/,
+      //   loader: 'url-loader?mime-type=application/font-woff',
+      //   query: {
+      //     name: '[path][name].[ext]?[hash]',
+      //   },
+      // },
+      // {
+      //   test: /\.(eot|ttf|svg|wav|mp3)(\?v=[0-9].[0-9].[0-9])?$/,
+      //   loader: 'file-loader',
+      //   query: {
+      //     name: '[path][name].[ext]?[hash]',
+      //   },
+      // },
     ]
   },
-  postcss: function () {
-    return [require('autoprefixer'), require('precss')];
-  },
-  devtool: '#source-map',
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-  ],
+  // postcss: function () {
+  //   return [require('autoprefixer'), require('precss')];
+  // },
+  // devtool: 'source-map',
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin(),
+  //   new webpack.NoErrorsPlugin(),
+  // ],
 };
