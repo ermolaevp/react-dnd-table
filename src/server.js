@@ -51,8 +51,10 @@ function startServer() {
   });
 }
 
-if (require.main === module) {
-  startServer();
-} else {
-  module.exports = startServer;
-}
+startServer();
+
+// if (require.main === module) {
+//   startServer();
+// } else {
+//   module.exports = startServer;
+// }

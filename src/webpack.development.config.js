@@ -29,28 +29,28 @@ module.exports = {
           "presets": ["react", "es2015", "stage-0", "react-hmre"]
         }
       },
-      // {
-      //   test: /\.(png|jpg|jpeg|gif)$/,
-      //   loader: 'url-loader',
-      //   query: {
-      //     name: '[path][name].[ext]?[hash]',
-      //     limit: 10000,
-      //   },
-      // },
-      // {
-      //   test: /\.(woff2?)(\?v=[0-9].[0-9].[0-9])?$/,
-      //   loader: 'url-loader?mime-type=application/font-woff',
-      //   query: {
-      //     name: '[path][name].[ext]?[hash]',
-      //   },
-      // },
-      // {
-      //   test: /\.(eot|ttf|svg|wav|mp3)(\?v=[0-9].[0-9].[0-9])?$/,
-      //   loader: 'file-loader',
-      //   query: {
-      //     name: '[path][name].[ext]?[hash]',
-      //   },
-      // },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'url-loader',
+        query: {
+          name: '[path][name].[ext]?[hash]',
+          limit: 10000,
+        },
+      },
+      {
+        test: /\.(woff2?)(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: 'url-loader?mime-type=application/font-woff',
+        query: {
+          name: '[path][name].[ext]?[hash]',
+        },
+      },
+      {
+        test: /\.(eot|ttf|svg|wav|mp3)(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: 'file-loader',
+        query: {
+          name: '[path][name].[ext]?[hash]',
+        },
+      },
     ]
   },
   // postcss: function () {
