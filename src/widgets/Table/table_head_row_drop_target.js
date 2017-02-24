@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom'
 import { DropTarget } from 'react-dnd'
 import classnames from 'classnames'
 import style from './css/column-resizable.css'
+import { ItemTypes } from './dnd_constants'
 
 const columnResizerTarget = {
   hover(props, monitor, component) {

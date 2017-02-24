@@ -3,11 +3,17 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   entry: [
-    // Add the client which connects to our middleware
-    // You can use full urls like 'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr'
-    // useful if you run your app from another point like django
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    // And then the actual application
+    'react-hot-loader/patch',
+    // activate HMR for React
+
+    'webpack-dev-server/client?http://localhost:8080',
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+
+    'webpack/hot/only-dev-server',
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+
     './main.js'
   ],
   output: {
@@ -19,15 +25,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader!postcss-loader"
+        use: [
+          'style-loader',
+          'css-loader?modules',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          "presets": ["react", "es2015", "stage-0", "react-hmre"]
-        }
+        use: [
+          'babel-loader'
+        ]
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
@@ -56,9 +65,12 @@ module.exports = {
   // postcss: function () {
   //   return [require('autoprefixer'), require('precss')];
   // },
-  // devtool: 'source-map',
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin(),
-  //   new webpack.NoErrorsPlugin(),
-  // ],
+  devtool: 'source-map',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+  ],
 };

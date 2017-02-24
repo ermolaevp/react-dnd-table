@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-const { _t, _f } = tiasUtils
 
 const style = {}
 

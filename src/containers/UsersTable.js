@@ -21,27 +21,27 @@ const mapStateToProps = () => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchData(endpoint, params) {
-    dispatch(dataFetch(endpoint, params));
+    // dispatch(dataFetch(endpoint, params));
   },
   moveColumnLeft(endpoint, source, target) {
-    dispatch(attributePlaceBefore(endpoint, source, target));
+    // dispatch(attributePlaceBefore(endpoint, source, target));
   },
   moveColumnRight(endpoint, source, target) {
-    dispatch(attributePlaceAfter(endpoint, source, target));
+    // dispatch(attributePlaceAfter(endpoint, source, target));
   },
   resizeColumn(endpoint, id, width) {
-    dispatch(attributeSetWidth(endpoint, id, width));
+    // dispatch(attributeSetWidth(endpoint, id, width));
   },
   sortAscending(endpoint, columnId, isSortedAsc=false) {
-    if (isSortedAsc) return dispatch(sortRemove(endpoint, columnId));
-    return dispatch(sortAscending(endpoint, columnId));
+    // if (isSortedAsc) return dispatch(sortRemove(endpoint, columnId));
+    // return dispatch(sortAscending(endpoint, columnId));
   },
   sortDescending(endpoint, columnId, isSortedDesc=false) {
-    if (isSortedDesc) return dispatch(sortRemove(endpoint, columnId));
-    return dispatch(sortDescending(endpoint, columnId));
+    // if (isSortedDesc) return dispatch(sortRemove(endpoint, columnId));
+    // return dispatch(sortDescending(endpoint, columnId));
   },
   removeSorting(endpoint, columnId) {
-    return dispatch(sortRemove(endpoint, columnId));
+    // return dispatch(sortRemove(endpoint, columnId));
   },
   handleRowClick(endpoint, row) {
 
