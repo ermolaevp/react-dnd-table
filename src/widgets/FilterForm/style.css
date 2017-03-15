@@ -1,3 +1,11 @@
 .filter-form {
   position: absolute;
+
+  .date-range-day-time-picker {
+    left: 258px;
+    top: 0;
+    .arrow-decoration {
+      display: none;
+    }
+  }
 }

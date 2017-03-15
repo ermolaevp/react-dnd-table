@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-const { _t } = tiasUtils
 
 // Widgets
 import ActionButtons from './action_buttons'
@@ -18,7 +17,7 @@ export default class BooleanFilterForm extends Component {
           <label htmlFor={`${prefix}_bool_form_on`}>
             <i className="material-icons">radio_button_checked</i>
             &nbsp;
-            {_t('in_homenet')}
+            in_homenet
           </label>
         </div>
         <div className="dd-menu-item">
@@ -27,7 +26,7 @@ export default class BooleanFilterForm extends Component {
           <label htmlFor={`${prefix}_bool_form_off`}>
             <i className="material-icons">radio_button_unchecked</i>
             &nbsp;
-            {_t('out_of_homenet')}
+            out_of_homenet
           </label>
         </div>
         <ActionButtons onSubmit={handleSubmit} onReset={onReset} />

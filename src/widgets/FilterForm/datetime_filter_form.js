@@ -1,136 +1,87 @@
-import "react-day-picker/lib/style.css";
 import React, { Component } from 'react';
-import DayPicker from "react-day-picker";
+import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
-import ActionButtons from './action_buttons'
-import { parseFormValues, clearForm, getRangeFilter } from './utils'
-const { _t, _f } = tiasUtils
-
-const getAfter = (m) => m.startOf('second').toJSON()
-const getBefore = (m) => m.endOf('second').toJSON()
-
-const FilterItem = ({ name, onChange, onClick, onSelectDay, currentActive }) => {
-  return (
-    <div className="dd-menu-item--filter">
-      <input
-        type="datetime"
-        name={name}
-        placeholder={_t(name)}
-        onClick={() => onClick(name)}
-        onChange={() => onChange(name)}
-      />
-      <div
-        className="calendar-wrapper menu-shadow"
-        style={{
-          display: currentActive === name ? 'block' : 'none'
-        }}
-      >
-        <DayPicker onDayClick={ (e, day) => onSelectDay(name, day) } />
-      </div>
-    </div>
-  )
-}
+// Widgets
+import DateTimeSelector from '../DateRangeFilter/DateTimeSelector';
+import DatetimeField from './datetime_field';
 
 class DatetimeFilterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lastModified: 'after',
-      currentActive: undefined
-    }
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onReset = this.onReset.bind(this);
-    this.setLastModified = this.setLastModified.bind(this);
-    this.setInputValue = this.setInputValue.bind(this);
-    this.onClick = this.onClick.bind(this);
+      date: new Date(),
+      currentActive: 'after',
+    };
+    this.handleDatetimeChange = this.handleDatetimeChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.setDate = this.setDate.bind(this);
+    this.setTime = this.setTime.bind(this);
   }
-  componentDidMount() {
-    console.log('datetime mounted')
+  setDate(date, { disabled, selected }) {
+    if (disabled) return false;
+    // let d = moment(date)
+    // for (const unit of ['Hours', 'Minutes', 'Seconds']) {
+    //   d = d[unit.toLowerCase()](this.state.date['get'+unit]())
+    // }
+    this.setState({ date });
+    this.handleDatetimeChange(date);
   }
-  fillForm(filter) {
-    if (typeof filter !== 'undefined') {
-      if (typeof filter['$gte'] !== 'undefined') this.form.after.value = _f(new Date(filter['$gte']))
-      if (typeof filter['$lte'] !== 'undefined') this.form.before.value = _f(new Date(filter['$lte']))
-    }
+  setTime(varName, value, unit) {
+    const date = moment(this.state.date)[unit](value).toDate();
+    this.setState({ date });
+    this.handleDatetimeChange(date);
   }
-  componentDidMount() {
-    this.fillForm(this.props.filter)
+  handleClick(e) {
+    let date = new Date(e.currentTarget.value);
+    if (date.toString() === 'Invalid Date') date = new Date();
+    this.setState({
+      currentActive: e.currentTarget.name,
+      date,
+    });
   }
-  componentWillReceiveProps(nextProps) {
-    if(JSON.stringify(nextProps.filter) !== JSON.stringify(this.props.filter)) {
-      this.fillForm(nextProps.filter)
-    }
-  }
-  onSubmit(e) {
-    e.preventDefault();
-    const { lastModified } = this.state;
-    const values = parseFormValues(this.form, val => moment(val.trim(), dateTimeFormat));
-    if ('on' === lastModified && values.on.isValid()) {
-      const after = getAfter(values.on);
-      const before = getBefore(values.on);
-      const filter = getRangeFilter(after, before);
-      return this.props.onSubmit(filter);
-    }
-    if ('after' === lastModified || 'before' === lastModified) {
-      const filter = getRangeFilter(getAfter(values.after), getBefore(values.before));
-      return this.props.onSubmit(filter);
-    }
-    return false;
-  }
-  onClick(inputName) {
-    this.setState({ currentActive: inputName });
-  }
-  setLastModified(lastModified) {
-    this.setState({ lastModified });
-    this.updateForm(lastModified);
-  }
-  setInputValue(inputName, day) {
-    let d = new Date(day);
-    switch(inputName){
-    case 'after':
-      d = moment(d).startOf('day');
-      break;
-    case 'before':
-      d = moment(d).endOf('day');
-      break;
-    default:
-      d = moment(d);
-    }
-    this.setState({ lastModified: inputName });
-    this.form[inputName].value = d.format(dateTimeFormat);
-    this.updateForm(inputName);
-  }
-  updateForm(lastModified) {
-    lastModified === 'on'
-      ? this.form.after.value = this.form.before.value = ''
-      : this.form.on.value = ''
-  }
-  onReset() {
-    clearForm(this.form)
-    this.props.onReset()
+  handleDatetimeChange(value) {
+    const { column } = this.props;
+    const actionFilters = {
+      after: this.props.setFilterGte,
+      before: this.props.setFilterLte,
+      on: this.props.setFilter,
+    };
+    actionFilters[this.state.currentActive](column.id, value);
   }
   render() {
-    const props = {
-      onChange: this.setLastModified,
-      onSelectDay: this.setInputValue,
-      onClick: this.onClick,
-      currentActive: this.state.currentActive
-    }
+    const { setFilter, onSubmit, filter, column } = this.props;
     return (
-      <form
-        ref={node => this.form = node}
-        onSubmit={this.onSubmit}
-      >
-        <FilterItem name="after" {...props}/>
-        <FilterItem name="before" {...props}/>
-        <div className="separator"/>
-        <FilterItem name="on" {...props}/>
+      <form onSubmit={onSubmit}>
+        <DatetimeField
+          value={(typeof filter === 'object' && filter.gte) || ''}
+          handleClick={this.handleClick}
+          handleOnChange={e => this.handleDatetimeChange(e.currentTarget.value)}
+          name="after"
+        />
+        <DatetimeField
+          value={(typeof filter === 'object' && filter.lte) || ''}
+          handleClick={this.handleClick}
+          handleOnChange={e => this.handleDatetimeChange(e.currentTarget.value)}
+          name="before"
+        />
+        <div className="separator" />
+        <DatetimeField
+          value={(typeof filter === 'string' || filter instanceof Date) ? filter : ''}
+          handleClick={this.handleClick}
+          handleOnChange={e => this.handleDatetimeChange(e.currentTarget.value)}
+          name="on"
+        />
         <button className="hidden">submit</button>
-
-        <ActionButtons onSubmit={this.onSubmit} onReset={this.onReset} />
+        <DateTimeSelector
+          date={this.state.date}
+          setDate={this.setDate}
+          setTime={this.setTime}
+          varName={this.state.currentActive}
+          visible
+        />
       </form>
-    )
+    );
   }
 }
 

@@ -2,5 +2,5 @@
   "name": "Table",
   "version": "0.0.1",
   "private": true,
-  "main": "./table.js"
+  "main": "./index"
 }

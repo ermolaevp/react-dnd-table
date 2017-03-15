@@ -3,6 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   entry: [
+    'whatwg-fetch',
     'react-hot-loader/patch',
     // activate HMR for React
 
@@ -21,22 +22,23 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader?modules',
+          'css-loader?importLoaders=1',
           'postcss-loader',
         ],
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        use: [
-          'babel-loader'
-        ]
+        loader: 'babel-loader',
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,

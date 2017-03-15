@@ -2,13 +2,14 @@
 @import './roboto.font.css';
 @import './material-icons.css';
 @import './checkbox.css';
+@import './date-range-filter.css';
+@import './react-day-picker.css';
 
 *::before, *::after {
     box-sizing: border-box;
 }
 
 html, body {
-
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   font-size: 13px;

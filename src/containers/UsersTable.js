@@ -4,44 +4,55 @@ import { connect } from 'react-redux';
 import Table from '../widgets/Table';
 // import TableColumnFilter from '../widgets/TableColumnFilter';
 
-const columns = [
-  { id: 'first_name', title: 'First Name' },
-  { id: 'last_name', title: 'Last Name' },
-];
+// Actions
+import columnsFetch from '../modules/columns/actions/columns_fetch';
+import columnsMoveLeft from '../modules/columns/actions/columns_move_left';
+import columnsMoveRight from '../modules/columns/actions/columns_move_right';
+import columnsSetWidth from '../modules/columns/actions/columns_set_width';
+import dataFetch from '../modules/data/actions/data_fetch';
+import columnFilterSet from '../modules/column_filter/actions/column_filter_set';
+import sortAsc from '../modules/sorts/actions/sort_asc';
+import sortDesc from '../modules/sorts/actions/sort_desc';
+import sortRemove from '../modules/sorts/actions/sort_remove';
 
-const data = [
-  { first_name: 'Jon', last_name: 'Doe' },
-];
+const mapStateToProps = ({ columns, data, sorts, filters, submittedFilters, pagination }) => {
+  return {
+    submittedFilters,
+    filters,
+    columns: columns.users,
+    sorts,
+    data: data.users.data,
+    pagination: pagination.users,
+  };
+};
 
-const mapStateToProps = () => ({
-  columns,
-  data,
-  endpoint: 'users',
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchData(endpoint, params) {
-    // dispatch(dataFetch(endpoint, params));
+const mapDispatchToProps = dispatch => ({
+  fetchColumns() {
+    dispatch(columnsFetch('users'));
   },
-  moveColumnLeft(endpoint, source, target) {
-    // dispatch(attributePlaceBefore(endpoint, source, target));
+  fetchData(params) {
+    dispatch(dataFetch('users', params));
   },
-  moveColumnRight(endpoint, source, target) {
-    // dispatch(attributePlaceAfter(endpoint, source, target));
+  columnFilterSet(payload) {
+    dispatch(columnFilterSet(payload));
   },
-  resizeColumn(endpoint, id, width) {
-    // dispatch(attributeSetWidth(endpoint, id, width));
+  moveColumnLeft(source, target) {
+    dispatch(columnsMoveLeft('users', source, target));
   },
-  sortAscending(endpoint, columnId, isSortedAsc=false) {
-    // if (isSortedAsc) return dispatch(sortRemove(endpoint, columnId));
-    // return dispatch(sortAscending(endpoint, columnId));
+  moveColumnRight(source, target) {
+    dispatch(columnsMoveRight('users', source, target));
   },
-  sortDescending(endpoint, columnId, isSortedDesc=false) {
-    // if (isSortedDesc) return dispatch(sortRemove(endpoint, columnId));
-    // return dispatch(sortDescending(endpoint, columnId));
+  resizeColumn(id, width) {
+    dispatch(columnsSetWidth('users', id, width));
   },
-  removeSorting(endpoint, columnId) {
-    // return dispatch(sortRemove(endpoint, columnId));
+  sortAscending(columnId) {
+    dispatch(sortAsc(columnId));
+  },
+  sortDescending(columnId) {
+    dispatch(sortDesc(columnId));
+  },
+  removeSorting(columnId) {
+    dispatch(sortRemove(columnId));
   },
   handleRowClick(endpoint, row) {
 

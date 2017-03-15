@@ -1,0 +1,112 @@
+.date-range-filter {
+  float: right;
+  position: relative;
+  padding-right: 24px;
+  .sep {
+    color: #e3f2fd;
+  }
+  .arrow-decoration {
+    position: absolute;
+    right: 16px;
+    top: -16px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #888;
+    z-index: 0;
+  }
+}
+
+.range-selector-limit-val {
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 14px;
+  &:last-child {
+    padding: 0 0 16px 8px;
+  }
+  &:first-child {
+    padding: 0 8px 16px 0;
+  }
+}
+.range-selector-title {
+  text-align: center;
+  padding: 4px;
+}
+.date-range-period-interval-wrapper {
+  display: inline-block;
+  padding: 0 8px;
+  width: 175px;
+  text-align: center;
+}
+.date-range-period-interval-activator, .date-range-apply-filters {
+  cursor: pointer;
+  color: #e3f2fd;
+  &:hover {
+    color: #90caf9;
+  }
+}
+
+.date-range-period-interval {
+  width: 320px;
+  background-color: white;
+  border: 1px solid #cecece;
+  padding: 16px 8px;
+  position: absolute;
+  right: 48px;
+  .range-selector {
+    padding: 8px;
+    input {
+      width: 185px;
+    }
+  }
+}
+
+.date-range-input-selector {
+  display: inline-block;
+  > span {
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    cursor: pointer;
+    color: #e3f2fd;
+    &:hover {
+      color: #90caf9;
+    }
+  }
+}
+
+.range-selector-current-time {
+  text-align: center;
+  font-size: 16px;
+  padding: 8px 0 16px 0;
+  /*font-weight: bolder;*/
+  letter-spacing: 5px;
+  /*font-family: monospace;*/
+  > span.wind-bullet {
+    cursor: pointer;
+    color: darkblue;
+  }
+}
+
+.date-range-day-time-picker {
+  width: 310px;
+  background-color: white;
+  border: 1px solid #cecece;
+  padding: 16px 8px;
+  position: absolute;
+  .range-selector {
+    padding: 8px;
+    input {
+      width: 250px;
+    }
+  }
+}
+
+.date-range-day-time-picker--_from {
+  left: -163px;
+}
+.date-range-day-time-picker--_to {
+  left: 20px;
+}
+.date-range-period-interval, .date-range-day-time-picker--_from, .date-range-day-time-picker--_to {
+  top: 49px;
+}
