@@ -10,7 +10,7 @@ export default class Checkbox extends Component {
   render() {
     const { label, id, isChecked, handleCheckboxChange } = this.props
     return (
-      <div className="dd-menu-item">
+      <div className="FilterForm-Checkbox">
         <input
           id={id}
           type="checkbox"

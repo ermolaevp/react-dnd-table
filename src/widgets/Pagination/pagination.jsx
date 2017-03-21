@@ -18,7 +18,7 @@ const SelectPageForm = ({ setPage, totalPages }) => {
         onSubmit={onSubmit}
       >
         <input name="pageInput" type="text" placeholder="page" />
-        <button><i className="material-icons">done</i></button>
+        <input type="submit" className="hidden" />
       </form>
     </span>
   );
@@ -72,7 +72,7 @@ class Pagination extends Component {
           >
             {itemsOnPage}
             {' '}
-            <i className="material-icons">arrow_drop_down</i>
+
           </a>
           <div className={classnames(['inline-drop-down', { hidden: this.state.maxResultsMenuHidden }])}>
             {[50, 40, 30, 20, 10].map(x =>
@@ -85,22 +85,20 @@ class Pagination extends Component {
         <span>{pageString}</span>
         { isNaN(total) ? <span className="go-first"><a href="javascript:void(0)" title="Go to first page" onClick={() => this.props.setPage(1)}><i className="material-icons">first_page</i></a></span> : ''}
         <span className="go-prev">
-          <a
+          <button
             title={`Go to page ${prev}`}
-            href="javascript:void(0)"
             onClick={() => this.props.setPage(prev)}
           >
-            <i className="material-icons">chevron_left</i>
-          </a>
+            &lt;
+          </button>
         </span>
         <span className="go-next">
-          <a
+          <button
             title={`Go to page ${next}`}
-            href="javascript:void(0)"
             onClick={() => { this.props.setPage(next); }}
           >
-            <i className="material-icons">chevron_right</i>
-          </a>
+            &gt;
+          </button>
         </span>
         { !isNaN(total) ? <SelectPageForm setPage={this.props.setPage} totalPages={totalPages} /> : '' }
       </div>

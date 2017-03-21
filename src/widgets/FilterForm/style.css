@@ -1,5 +1,51 @@
-.filter-form {
+.FilterForm {
   position: absolute;
+  box-shadow: 0px 2px 6px 0px rgba(50, 50, 50, 0.55);
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  z-index: 100;
+  background-color: #fff;
+  min-width: 256px;
+  padding: 16px 0;
+  font-size: 13px;
+  text-align: left;
+
+  > form {
+    margin: 0 8px;
+
+    input {
+      width: 97%;
+      line-height: 24px;
+      font-size: 14px;
+      border: 1px solid #90A4AE;
+      border-radius: 2px;
+      padding: 0 4px;
+    }
+  }
+
+  .FilterForm-StringField {
+
+  }
+
+  .FilterForm-DatetimeField {
+    &:first-child {
+      margin-bottom: 4px;
+    }
+  }
+
+  .FilterForm-ActionButtons {
+    margin: 8px 8px 0 8px;
+    text-align: right;
+
+    > button {
+      border: none;
+      background-color: #90A4AE;
+      color: #000;
+      margin-left: 2px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+  }
 
   .date-range-day-time-picker {
     left: 258px;

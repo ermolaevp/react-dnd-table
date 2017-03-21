@@ -30,9 +30,9 @@ class TableHeadColumnTitleDnDSource extends Component {
   render() {
     const { isDragging, connectDragSource } = this.props;
     return connectDragSource(
-      <span className={classnames([{ isDragging }])}>
+      <div className={classnames([{ isDragging }])}>
         {this.props.children}
-      </span>,
+      </div>,
     );
   }
 }

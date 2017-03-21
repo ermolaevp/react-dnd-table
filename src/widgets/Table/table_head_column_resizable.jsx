@@ -26,7 +26,7 @@ class TableHeadColumnResizer extends Component {
       isDragging,
     } = this.props;
     return connectDragSource(
-      <div className={classnames(['column-resizer', { isDragging }])} />,
+      <span className={classnames(['ReactDnDTable-ColumnResizer', { isDragging }])} />,
     );
   }
 }

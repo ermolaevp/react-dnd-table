@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DropTarget } from 'react-dnd';
 import classnames from 'classnames';
-import style from './css/column-resizable.css';
 import { ItemTypes } from './dnd_constants';
 
 const columnResizerTarget = {
@@ -52,7 +51,7 @@ class TableHeadRowDropTarget extends Component {
   render() {
     const { isOver } = this.props;
     return this.props.connectDropTarget(
-      <tr className={classnames(['column-row-drop-target', { isOver }])}>
+      <tr className={classnames([{ isOver }])}>
         {this.props.children}
       </tr>,
     );

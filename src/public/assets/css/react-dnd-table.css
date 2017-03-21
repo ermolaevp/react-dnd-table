@@ -1,0 +1,97 @@
+table.ReactDnDTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th,
+  td {
+    white-space: nowrap;
+    line-height: 24px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  > thead {
+    tr {
+      border: 1px solid transparent;
+
+      &.isOver {
+        border: 1px dashed #78909c;
+      }
+    }
+
+    th {
+      > span {
+        display: flex;
+      }
+
+      button {
+        border: none;
+        background-color: #B0BEC5;
+        margin: 0;
+        padding: 0 10px;
+      }
+
+      &:last-child {
+        .ReactDnDTable-ColumnResizer {
+          display: none;
+        }
+      }
+    }
+  }
+
+  > tbody {
+    tr:nth-child(odd) {
+      background-color: #ECEFF1;
+    }
+
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-left: 24px;
+    }
+  }
+
+  .ReactDnDTable-TitleDraggable {
+    flex-grow: 1;
+
+    > div {
+      display: flex;
+
+      &.isDragging {
+        opacity: 0.5;
+      }
+    }
+
+    &.sourceOnTheLeft {
+      border-left: 2px solid #263238;
+    }
+
+    &.sourceOnTheRight {
+      border-right: 2px solid #263238;
+    }
+  }
+
+  .ReactDnDTable-TitleFilterIcon {
+    &.isFiltered {
+      background-color: #90A4AE;
+    }
+  }
+
+  .ReactDnDTable-TitleSortable {
+    flex-grow: 1;
+  }
+
+  .ReactDnDTable-ColumnResizer {
+    min-height: 24px;
+    width: 3px;
+    cursor: col-resize;
+    background-color: #fff;
+    z-index: 1000;
+
+    &:hover,
+    &.isDragging {
+      background-color: #78909c;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import DayPicker from 'react-day-picker';
 import moment from 'moment';
 
 // Widgets
-import DateTimeSelector from '../DateRangeFilter/DateTimeSelector';
+import DateTimeSelector from './datetime_selector';
 import DatetimeField from './datetime_field';
 
 class DatetimeFilterForm extends Component {
@@ -50,7 +50,7 @@ class DatetimeFilterForm extends Component {
     actionFilters[this.state.currentActive](column.id, value);
   }
   render() {
-    const { setFilter, onSubmit, filter, column } = this.props;
+    const { onSubmit, filter } = this.props;
     return (
       <form onSubmit={onSubmit}>
         <DatetimeField
@@ -84,5 +84,18 @@ class DatetimeFilterForm extends Component {
     );
   }
 }
+
+DatetimeFilterForm.defaultProps = {
+  filter: '',
+};
+
+DatetimeFilterForm.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+  setFilterGte: PropTypes.func.isRequired,
+  setFilterLte: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  filter: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.instanceOf(Date)]),
+  column: PropTypes.object.isRequired,
+};
 
 export default DatetimeFilterForm;

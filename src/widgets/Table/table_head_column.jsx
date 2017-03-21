@@ -13,11 +13,13 @@ const TableHeadColumn = (props) => {
       id={props.column.id}
       style={style}
     >
-      <TableHeadColumnTitleDnD {...props} id={props.column.id} >
-        <TableHeadColumnFilterIcon {...props} />
-        <TableHeadColumnTitleSortable {...props} />
-      </TableHeadColumnTitleDnD>
-      <TableHeadColumnResizable {...props} id={props.column.id} />
+      <span>
+        <TableHeadColumnTitleDnD {...props} id={props.column.id} >
+          <TableHeadColumnFilterIcon {...props} />
+          <TableHeadColumnTitleSortable {...props} />
+        </TableHeadColumnTitleDnD>
+        <TableHeadColumnResizable {...props} id={props.column.id} />
+      </span>
     </th>
   );
 };

@@ -7,7 +7,7 @@ class StringFilterForm extends Component {
     if (this.form) this.form.input_value.focus();
     return (
       <form ref={node => this.form = node} onSubmit={onSubmit}>
-        <div className="dd-menu-item--filter">
+        <div className="FilterForm-StringField">
           <input
             name="input_value"
             autoFocus
@@ -16,7 +16,7 @@ class StringFilterForm extends Component {
             onChange={handleOnChange}
           />
         </div>
-        <button className="hidden">submit</button>
+        <input type="submit" className="hidden" />
       </form>
     )
   }

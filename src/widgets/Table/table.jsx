@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import './css/table.css';
-import './css/column-title-dnd.css';
-
 // Widgets
 import TableHead from './table_head';
 import TableHeadColumn from './table_head_column';
@@ -28,7 +25,7 @@ class Table extends Component {
   }
   render() {
     return (
-      <table>
+      <table className="ReactDnDTable">
         <TableHead>
           <TableHeadRowDropTarget resizeColumn={this.props.resizeColumn}>
             {this.props.columns.map(column =>
@@ -55,11 +52,11 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  columns: PropTypes.array.isRequired,
-  data: PropTypes.array.isRequired,
   fetchData: PropTypes.func.isRequired,
   fetchColumns: PropTypes.func.isRequired,
   resizeColumn: PropTypes.func.isRequired,
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default Table;

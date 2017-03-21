@@ -38,48 +38,15 @@ const mapDispatchToProps = dispatch => ({
   closeColumnFilter() {
     dispatch(columnFilterSet({ isVisible: false }));
   },
-  onSubmit(columnId, payload) {
+  handleOnSubmit(columnId, payload) {
     dispatch(submitFilter(columnId, payload));
+    dispatch(columnFilterSet({ isVisible: false }));
   },
-  onReset(columnId) {
+  handleOnReset(columnId) {
     dispatch(filterRemove(columnId));
     dispatch(unsubmitFilter(columnId));
+    dispatch(columnFilterSet({ isVisible: false }));
   },
 });
 
-class ColumnFilter extends Component {
-  constructor(props) {
-    super(props);
-    this.closeFilterForm = this.closeFilterForm.bind(this);
-  }
-  componentDidMount() {
-    window !== undefined && window.addEventListener('click', this.closeFilterForm);
-  }
-  componentWillUnmount() {
-    window !== undefined && window.removeEventListener('click', this.closeFilterForm);
-  }
-  closeFilterForm(e) {
-    this.props.isVisible && this.props.closeColumnFilter();
-  }
-  render() {
-    return (
-      <FilterForm {...this.props} />
-    );
-  }
-}
-
-// ColumnFilter.propTypes = {
-//   isVisible: PropTypes.bool.isRequired,
-//   positionX: PropTypes.number.isRequired,
-//   positionY: PropTypes.number.isRequired,
-//   // filter: undefined || object || string || number,
-//   choices: PropTypes.array.isRequired,
-//   filterType: PropTypes.string,
-//   endpoint: PropTypes.string,
-//   column: PropTypes.string,
-//   setFilter: PropTypes.func.isRequired,
-//   resetFilter: PropTypes.func.isRequired,
-//   closeTfc: PropTypes.func.isRequired,
-// };
-
-export default connect(mapStateToProps, mapDispatchToProps)(ColumnFilter);
+export default connect(mapStateToProps, mapDispatchToProps)(FilterForm);

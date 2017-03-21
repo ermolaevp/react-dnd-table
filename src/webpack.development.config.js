@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -29,11 +30,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader?importLoaders=1',
-          'postcss-loader',
-        ],
+        // use: [
+        //   'style-loader',
+        //   'css-loader?importLoaders=1',
+        //   'postcss-loader',
+        // ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?importLoaders=1',
+            'postcss-loader',
+          ],
+        }),
       },
       {
         test: /\.jsx?$/,
@@ -62,7 +70,7 @@ module.exports = {
           name: '[path][name].[ext]?[hash]',
         },
       },
-    ]
+    ],
   },
   // postcss: function () {
   //   return [require('autoprefixer'), require('precss')];
@@ -74,5 +82,7 @@ module.exports = {
 
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
+
+    new ExtractTextPlugin("styles.css"),
   ],
 };

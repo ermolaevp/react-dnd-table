@@ -60,9 +60,9 @@ class TableHeadColumnTitleDnD extends Component {
       isOver,
     } = this.props;
     return connectDropTarget(
-      <div
+      <span
         className={classnames([
-          'column-title-dnd',
+          'ReactDnDTable-TitleDraggable',
           {
             sourceOnTheLeft: isOver && this.state.sourceOnTheLeft === true,
             sourceOnTheRight: isOver && this.state.sourceOnTheLeft === false,
@@ -72,7 +72,7 @@ class TableHeadColumnTitleDnD extends Component {
         <TableHeadColumnTitleDnDSource id={column.id}>
           {this.props.children}
         </TableHeadColumnTitleDnDSource>
-      </div>
+      </span>,
     );
   }
 }
@@ -86,6 +86,6 @@ TableHeadColumnTitleDnD.propTypes = {
   // added by decorator
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
-}
+};
 
 export default DropTarget(ItemTypes.COLUMN_TITLE, columnTitleTarget, collectDrop)(TableHeadColumnTitleDnD);

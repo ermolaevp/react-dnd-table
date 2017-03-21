@@ -1,5 +1,0 @@
-[
-  { "id": "first_name", "title": "First Name", "type": "string" },
-  { "id": "last_name", "title": "Last Name", "type": "string" },
-  { "id": "birth_date", "title": "Birth date", "type": "string" }
-]

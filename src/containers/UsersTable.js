@@ -15,7 +15,7 @@ import sortAsc from '../modules/sorts/actions/sort_asc';
 import sortDesc from '../modules/sorts/actions/sort_desc';
 import sortRemove from '../modules/sorts/actions/sort_remove';
 
-const mapStateToProps = ({ columns, data, sorts, filters, submittedFilters, pagination }) => {
+const mapStateToProps = ({ columns, data, sorts, filters, submittedFilters, pagination, columnFilter }) => {
   return {
     submittedFilters,
     filters,
@@ -23,6 +23,7 @@ const mapStateToProps = ({ columns, data, sorts, filters, submittedFilters, pagi
     sorts,
     data: data.users.data,
     pagination: pagination.users,
+    columnFilter,
   };
 };
 
@@ -37,12 +38,15 @@ const mapDispatchToProps = dispatch => ({
     dispatch(columnFilterSet(payload));
   },
   moveColumnLeft(source, target) {
+    dispatch(columnFilterSet({ isVisible: false }));
     dispatch(columnsMoveLeft('users', source, target));
   },
   moveColumnRight(source, target) {
+    dispatch(columnFilterSet({ isVisible: false }));
     dispatch(columnsMoveRight('users', source, target));
   },
   resizeColumn(id, width) {
+    dispatch(columnFilterSet({ isVisible: false }));
     dispatch(columnsSetWidth('users', id, width));
   },
   sortAscending(columnId) {

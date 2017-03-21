@@ -17,13 +17,11 @@ const TableHeadColumnTitleSortable = ({
     return false;
   };
   return (
-    <span>
-      <button onClick={mySort}>
-        {column.title}
-        { isSortedAsc && <span className="">&uarr;</span> }
-        { isSortedDesc && <span className="">&darr;</span> }
-      </button>
-    </span>
+    <button onClick={mySort} className="ReactDnDTable-TitleSortable" title="Sort column">
+      {column.title}
+      { isSortedAsc && <span className="">&uarr;</span> }
+      { isSortedDesc && <span className="">&darr;</span> }
+    </button>
   );
 };
 
