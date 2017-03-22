@@ -5,9 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack --config ./src/webpack.production.config.js --progress --profile --colors",
-    "serve": "npm build && node src/cluster"
+    "start": "webpack-dev-server",
+    "build": "rimraf dist && set NODE_ENV=production && webpack --config src/webpack.config.js --output-path dist --progress --profile --colors"
   },
   "author": "",
   "license": "ISC",

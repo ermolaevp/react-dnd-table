@@ -16,7 +16,7 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
-    './main.js'
+    './main.js',
   ],
   output: {
     path: __dirname + '/public',
@@ -83,6 +83,6 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
 
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin('styles.css'),
   ],
 };

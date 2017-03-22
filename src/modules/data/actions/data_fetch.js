@@ -3,7 +3,7 @@ import dataReceive from './data_receive';
 
 export default function dataFetch(endpoint, params = {}) {
   return dispatch =>
-    fetch(`http://localhost:3000/${endpoint}/search.json`, {
+    fetch(`https://react-dnd-table-api.herokuapp.com/${endpoint}/search.json`, {
       method: 'POST',
       mode: 'cors',
       headers: {
