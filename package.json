@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack --config src/webpack.config.js --output-path dist --progress --profile --colors"
+    "build": "rimraf dist && set NODE_ENV=production && webpack --output-path dist --progress --profile --colors"
   },
   "author": "",
   "license": "ISC",

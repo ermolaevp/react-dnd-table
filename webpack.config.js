@@ -1,10 +1,20 @@
-var webpack = require('webpack');
+const env = process.env.NODE_ENV || 'development';
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-  context: __dirname,
-  entry: [
-    'whatwg-fetch',
+let entry = [
+  'whatwg-fetch',
+  './src/main.js',
+];
+
+let plugins = [
+  new ExtractTextPlugin('styles.css'),
+];
+
+if (env === 'development') {
+  entry = [
+    ...entry,
+
     'react-hot-loader/patch',
     // activate HMR for React
 
@@ -15,13 +25,26 @@ module.exports = {
     'webpack/hot/only-dev-server',
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
+  ];
 
-    './main.js',
-  ],
+  plugins = [
+    ...plugins,
+
+    new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+  ];
+}
+
+module.exports = {
+  context: __dirname,
+  entry,
   output: {
-    path: __dirname + '/public',
+    path: `${__dirname}/public`,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -30,11 +53,6 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        // use: [
-        //   'style-loader',
-        //   'css-loader?importLoaders=1',
-        //   'postcss-loader',
-        // ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -72,17 +90,6 @@ module.exports = {
       },
     ],
   },
-  // postcss: function () {
-  //   return [require('autoprefixer'), require('precss')];
-  // },
   devtool: 'source-map',
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
-
-    new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
-
-    new ExtractTextPlugin('styles.css'),
-  ],
+  plugins,
 };

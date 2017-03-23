@@ -1,12 +1,11 @@
-// import injectTapEventPlugin from 'react-tap-event-plugin';
-import styles from './public/assets/css/index.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AppContainer from './containers/App.js';
+import './public/assets/css/index.css';
+
+import AppContainer from './containers/App';
 
 ReactDOM.render(
   <AppContainer />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
