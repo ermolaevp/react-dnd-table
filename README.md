@@ -1,6 +1,8 @@
 React-DnD-Table
 =======================
 
+![](https://github.com/ermolaevp/react-dnd-table/blob/master/thumbnail_original.png)
+
 Features
 -----------------------
 
